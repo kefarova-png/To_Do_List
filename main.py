@@ -22,12 +22,13 @@ class ToDoList:
 
 
     def remove_task(self, task):
-        for t in self.tasks:  #  Ищем (по названию) и удаляем задачу
+        for t in self.tasks:  #  Ищем (по названию) задачу
             if t['task'] == task:
-                self.tasks.remove(t)
                 break
         else:
             print(f"Задача '{task}' не существует.")
+            return
+        self.tasks.remove(t)  #  Удаляем найденную задачу (вне цикла)
 
 
     def list_tasks(self):
@@ -41,8 +42,11 @@ class ToDoList:
 
 
 #  Проверка
-print('\nСозданы две задачи с интервалом 2 секунды\n')
 todo = ToDoList()
+print('\nУдаляем ещё не созданную Задачу 1\n')
+todo.remove_task("Задача 1")
+todo.list_tasks()
+print('\nСозданы две задачи с интервалом 2 секунды\n')
 todo.add_task("Задача 1")
 time.sleep(2)
 todo.add_task("Задача 2")
@@ -50,9 +54,15 @@ todo.list_tasks()
 print('\nЗадача 1 - завершена\n')
 todo.complete_task("Задача 1")
 todo.list_tasks()
-print('\nЗадачи 2 - удалена\n')
+print('\nЗадача 3 - её нет, но пытаемся её удалить\n')
+todo.remove_task("Задача 3")
+todo.list_tasks()
+print('\nЗадача 2 - удалена\n')
 todo.remove_task("Задача 2")
 todo.list_tasks()
-print('\nЗадачи 1 - удалена\n')
+print('\nЗадача 1 - удалена\n')
+todo.remove_task("Задача 1")
+todo.list_tasks()
+print('\nЕщё раз удаляем Задачу 1\n')
 todo.remove_task("Задача 1")
 todo.list_tasks()
