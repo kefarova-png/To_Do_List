@@ -34,9 +34,9 @@ class ToDoList:
         if not self.tasks:
             print("Список задач пуст.")  #  Если нет задач
             return
-        for t in self.tasks:  #  перебираем пары
-            status = "[✓]" if t['done'] else "[×]"  #  Статус присваиваем в зависимости от "истинности" 'done'
-            time_to_print = t['time'].strftime("%Y-%m-%d %H:%M:%S")
+        for t in self.tasks:  #  Перебираем поля задач
+            status = "[✓]" if t['done'] else "[×]"  #  Значок статуса в зависимости от "истинности" t['done']
+            time_to_print = t['time'].strftime("%Y-%m-%d %H:%M:%S")  #  Отображаемое время
             print(f"{t['task']} (от {time_to_print}) {status}")  #  Выводим список названий задач со значками
 
 
@@ -50,6 +50,9 @@ todo.list_tasks()
 print('\nЗадача 1 - завершена\n')
 todo.complete_task("Задача 1")
 todo.list_tasks()
-print('\n"Задачи 2" - удалена\n')
+print('\nЗадачи 2 - удалена\n')
 todo.remove_task("Задача 2")
+todo.list_tasks()
+print('\nЗадачи 1 - удалена\n')
+todo.remove_task("Задача 1")
 todo.list_tasks()
